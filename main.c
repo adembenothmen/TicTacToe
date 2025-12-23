@@ -1,6 +1,10 @@
 #include <gtk/gtk.h>
 #include "game.h"
 
+
+
+// --------------- role:lancement GTK -------------------------
+
 int main(int argc, char *argv[])
 {
     // Initialisation de GTK
