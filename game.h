@@ -73,4 +73,8 @@ gboolean play_move(int row, int col, char player);
 // Annule un coup (utile pour Minimax plus tard)
 void undo_move(int row, int col);
 
+// Réinitialise le plateau pour une nouvelle partie
+void reset_game(GtkWidget *parent);
+
+
 #endif

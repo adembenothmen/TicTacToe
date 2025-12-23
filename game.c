@@ -111,6 +111,12 @@ void create_board(GtkWidget *window)
         }
     }
 
+    // Ajouter un bouton "Nouvelle Partie" en dessous du plateau(reset game)
+    GtkWidget *new_game_btn = gtk_button_new_with_label("Nouvelle Partie");
+    g_signal_connect(new_game_btn, "clicked", G_CALLBACK(reset_game), window);
+    gtk_grid_attach(GTK_GRID(grid), new_game_btn, 0, 3, 3, 1); // 3 colonnes pour centrer
+
+
     gtk_widget_show_all(window); // Affiche tous les widgets
 }
 
@@ -216,6 +222,7 @@ void pc_play(GtkWidget *window)
     }
 }
 
+
 // =============================================================================
 // VERIFICATION DU GAGNANT
 // ============================================================================
@@ -277,3 +284,21 @@ void show_game_over(GtkWidget *parent, const char *message)
     gtk_dialog_run(GTK_DIALOG(dialog)); // Affiche la boîte de dialogue
     gtk_widget_destroy(dialog);         // Détruit la boîte de dialogue après fermeture
 }
+
+// =============================================================================
+// reset game
+// ============================================================================
+void reset_game(GtkWidget *parent)
+{
+    // Réinitialiser le plateau logique
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++) {
+            board[i][j] = EMPTY;
+            gtk_button_set_label(GTK_BUTTON(buttons[i][j]), " "); // Vide les boutons
+        }
+
+    // Réinitialiser les variables
+    current_player = HUMAN;
+    game_over = FALSE;
+}
+
